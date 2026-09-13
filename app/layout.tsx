@@ -6,7 +6,6 @@ export const metadata: Metadata = {
   title: "Sonder Supply — Everyday, Refined.",
   description:
     "Considered everyday clothing made with honest materials and practical silhouettes.",
-  generator: "v0.app",
 };
 
 export const viewport: Viewport = {

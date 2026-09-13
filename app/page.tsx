@@ -103,7 +103,9 @@ export default function Page() {
         onCart={() => setDrawer(true)}
         onSearch={() => setSearch(true)}
       />
+
       <Hero />
+
       <section className="section collection" id="shop">
         <div className="section-heading">
           <div>
@@ -138,6 +140,7 @@ export default function Page() {
           Showing {visible.length} of {products.length} pieces
         </div>
       </section>
+
       <section className="statement" id="about">
         <p className="eyebrow">Our point of view</p>
         <h2>
@@ -156,7 +159,9 @@ export default function Page() {
           </a>
         </div>
       </section>
+
       <EditorialSection />
+
       <section className="section categories" id="collections">
         <div className="section-heading">
           <div>
@@ -173,7 +178,7 @@ export default function Page() {
               )!;
               return (
                 <button
-                  className="category"
+                  className="relative group overflow-hidden rounded-lg w-full cursor-pointer focus:outline-none"
                   key={category}
                   onClick={() => {
                     setFilter(category.toUpperCase() as CategoryFilter);
@@ -182,10 +187,16 @@ export default function Page() {
                       ?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  <img src={item.image} alt={`${category} collection`} />
-                  <div>
-                    <span>{category}</span>
-                    <ArrowUpRight size={16} />
+                  <img
+                    src={item.image}
+                    alt={`${category} collection`}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white">
+                    <span className="font-semibold text-lg capitalize">
+                      {category}
+                    </span>
+                    <ArrowUpRight size={20} />
                   </div>
                 </button>
               );
