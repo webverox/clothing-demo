@@ -1,5 +1,6 @@
 import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Header({
   cartCount,
@@ -52,15 +53,25 @@ export function Header({
           {menu ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
-      {menu && (
-        <nav className="mobile-nav" aria-label="Mobile navigation">
-          {links.map(([label, href]) => (
-            <a key={label} href={href} onClick={() => setMenu(false)}>
-              {label}
-            </a>
-          ))}
-        </nav>
-      )}
+
+      <AnimatePresence>
+        {menu && (
+          <motion.nav
+            className="mobile-nav"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0, y: -20, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }}
+            exit={{ opacity: 0, y: -20, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {links.map(([label, href]) => (
+              <a key={label} href={href} onClick={() => setMenu(false)}>
+                {label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
