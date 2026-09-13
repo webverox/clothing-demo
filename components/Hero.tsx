@@ -77,7 +77,7 @@ export function Hero() {
           >
             {/* Background slide fill effect */}
             <motion.span
-              className="absolute inset-0 bg-[var(--button-dark-bg,#18181b)] -z-10"
+              className="absolute inset-0 bg-(--button-dark-bg,#18181b) -z-10"
               variants={fillVariants}
               transition={{ duration: 0.35, ease: "easeInOut" }}
             />

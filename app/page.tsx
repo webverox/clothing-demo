@@ -17,6 +17,8 @@ import { Category } from "@/components/CategoryFilter";
 import { Hero } from "@/components/Hero";
 import { EditorialSection } from "@/components/EditorialSection";
 import { Newsletter } from "@/components/Newsletter";
+import { ShopSection } from "@/components/ShopSection";
+import { StatementSection } from "@/components/StatementSection";
 
 type CartLine = { productId: string; size: string; quantity: number };
 
@@ -106,59 +108,20 @@ export default function Page() {
 
       <Hero />
 
-      <section className="section collection" id="shop">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow" id="new">
-              01 — The edit
-            </p>
-            <h2>The autumn edit</h2>
-          </div>
-          <div className="collection-controls">
-            <Category active={filter} onChange={setFilter} />
-            <label className="sort-control">
-              Sort by{" "}
-              <select
-                value={sort}
-                onChange={(event) => setSort(event.target.value)}
-              >
-                <option>Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest</option>
-              </select>
-            </label>
-          </div>
-        </div>
-        <ProductGrid
-          items={visible}
-          onOpen={setQuickProduct}
-          wishlist={wishlist}
-          onWishlist={toggleWishlist}
-        />
-        <div className="shop-count">
-          Showing {visible.length} of {products.length} pieces
-        </div>
-      </section>
+      <ShopSection
+        filter={filter}
+        products={products}
+        setFilter={setFilter}
+        setQuickProduct={setQuickProduct}
+        setSort={setSort}
+        sort={sort}
+        toggleWishlist={toggleWishlist}
+        visible={visible}
+        wishlist={wishlist}
+        key="shop-section"
+      />
 
-      <section className="statement" id="about">
-        <p className="eyebrow">Our point of view</p>
-        <h2>
-          Clothing
-          <br />
-          <em>without the noise.</em>
-        </h2>
-        <div className="statement-detail">
-          <p>
-            Sonder Supply creates considered everyday pieces with honest
-            materials, practical silhouettes, and a focus on the details that
-            matter.
-          </p>
-          <a className="text-link" href="#story">
-            Read our story <span>↗</span>
-          </a>
-        </div>
-      </section>
+      <StatementSection />
 
       <EditorialSection />
 

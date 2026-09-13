@@ -1,5 +1,36 @@
+import { motion, Variants } from "framer-motion";
 import { type Product } from "@/lib/products";
 import { ProductCard } from "./ProductCard";
+
+// Parent container variant to stagger child items
+const gridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08, // Delay between each card's pop-up
+    },
+  },
+};
+
+// Card pop-up spring variant
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.85,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
 
 export const ProductGrid = ({
   items,
@@ -19,17 +50,25 @@ export const ProductGrid = ({
         <p>Try another search or category.</p>
       </div>
     );
+
   return (
-    <div className="product-grid">
+    <motion.div
+      className="product-grid"
+      variants={gridVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+    >
       {items.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          onOpen={() => onOpen(product)}
-          isWishlisted={wishlist.includes(product.id)}
-          onWishlist={() => onWishlist(product.id)}
-        />
+        <motion.div key={product.id} variants={cardVariants}>
+          <ProductCard
+            product={product}
+            onOpen={() => onOpen(product)}
+            isWishlisted={wishlist.includes(product.id)}
+            onWishlist={() => onWishlist(product.id)}
+          />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
