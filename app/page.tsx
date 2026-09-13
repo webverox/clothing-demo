@@ -1,28 +1,12 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+
 import { useStoredState } from "@/hooks/useStoredState";
-import {
-  ArrowUpRight,
-  Heart,
-  Menu,
-  Minus,
-  Plus,
-  Search,
-  ShoppingBag,
-  Trash2,
-  UserRound,
-  X,
-} from "lucide-react";
-
-import {
-  categories,
-  filterProducts,
-  formatPrice,
-  products,
-} from "@/lib/products";
-
+import { filterProducts, products } from "@/lib/products";
 import type { CategoryFilter, Product } from "@/lib/products";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ProductGrid } from "@/components/Product/ProductGrid";
