@@ -33,7 +33,16 @@ export function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© 2026 Sonder Supply</span>
-        <span>Made with intention</span>
+        <span className="text-lg">
+          Demo made with ❤ by{" "}
+          <a
+            target="_blank"
+            className="text-black!"
+            href="https://webverox.com"
+          >
+            Webverox
+          </a>
+        </span>
         <div>
           <a href="#top">Terms</a>
           <a href="#top">Privacy</a>
